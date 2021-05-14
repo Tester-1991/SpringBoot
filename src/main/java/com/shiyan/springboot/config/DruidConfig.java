@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 import java.util.Arrays;
 
-@Configuration
+//@Configuration
 public class DruidConfig {
 
-    @ConfigurationProperties("spring.datasource")
-    @Bean
+//    @ConfigurationProperties("spring.datasource")
+//    @Bean
     public DataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         return dataSource;
@@ -27,7 +27,7 @@ public class DruidConfig {
      *
      * @return
      */
-    @Bean
+//    @Bean
     public ServletRegistrationBean statViewServlet() {
         StatViewServlet statViewServlet = new StatViewServlet();
         ServletRegistrationBean<StatViewServlet> servletServletRegistrationBean = new ServletRegistrationBean<>(statViewServlet, "/druid/*");
@@ -39,7 +39,7 @@ public class DruidConfig {
     /**
      * WebStatFilter用于采集web-jdbc关联监控的数据
      */
-    @Bean
+//    @Bean
     public FilterRegistrationBean webStatFilter() {
 
         WebStatFilter webStatFilter = new WebStatFilter();
