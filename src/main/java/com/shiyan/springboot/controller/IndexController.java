@@ -1,7 +1,9 @@
 package com.shiyan.springboot.controller;
 
 import com.shiyan.springboot.bean.Account;
+import com.shiyan.springboot.bean.City;
 import com.shiyan.springboot.service.AccountService;
+import com.shiyan.springboot.service.CityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,12 +22,20 @@ public class IndexController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private CityService cityService;
+
+    @ResponseBody
+    @GetMapping("/city")
+    public City getCityById(@RequestParam("id") long id) {
+        return cityService.getById(id);
+    }
+
     @ResponseBody
     @GetMapping("/acct")
     public Account getAccById(@RequestParam("id") long id) {
         return accountService.getAcctById(id);
     }
-
 
     @ResponseBody
     @GetMapping("/sql")
