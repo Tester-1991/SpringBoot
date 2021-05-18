@@ -1,5 +1,7 @@
 package com.shiyan.springboot;
 
+import com.shiyan.springboot.bean.User;
+import com.shiyan.springboot.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ class ApplicationTests {
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Test
     void contextLoads() {
 
@@ -26,6 +31,12 @@ class ApplicationTests {
         log.info("记录总数:{}", count);
 
         log.info(dataSource.getClass().getName());
+    }
+
+    @Test
+    void testUserMapper() {
+        User user = userMapper.selectById(1l);
+        log.info("用户信息:{}", user);
     }
 
 }

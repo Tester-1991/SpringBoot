@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,6 +25,13 @@ public class IndexController {
 
     @Autowired
     private CityService cityService;
+
+    @ResponseBody
+    @PostMapping("/city")
+    public City saveCity(City city){
+        cityService.insert(city);
+        return city;
+    }
 
     @ResponseBody
     @GetMapping("/city")

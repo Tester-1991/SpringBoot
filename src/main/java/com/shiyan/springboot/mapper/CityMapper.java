@@ -8,5 +8,7 @@ import org.apache.ibatis.annotations.Select;
 public interface CityMapper {
     @Select("select * from city where id=#{id}")
     public City getById(Long id);
+
+    public void insert(City city);
 }
 
