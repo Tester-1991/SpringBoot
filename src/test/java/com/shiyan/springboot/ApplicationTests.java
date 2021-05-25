@@ -1,5 +1,7 @@
 package com.shiyan.springboot;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.shiyan.springboot.bean.User;
 import com.shiyan.springboot.mapper.UserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Slf4j
 @SpringBootTest
@@ -39,4 +42,28 @@ class ApplicationTests {
         log.info("用户信息:{}", user);
     }
 
+    @Test
+    void testPage() {
+        IPage<User> userPage = new Page<>(2, 3);
+        userPage = userMapper.selectPage(userPage, null);
+        List<User> records = userPage.getRecords();
+        for (User user : records) {
+            log.info("用户信息{}", user);
+        }
+    }
+
+    @Test
+    void testSaveUser() {
+        User user = new User();
+        user.setName("Jame");
+        user.setAge(30);
+        user.setEmail("1002450926@qq.com");
+        userMapper.insert(user);
+    }
+
+    @Test
+    void testDeleteUser() {
+        int result = userMapper.deleteById(1397106226088763393l);
+        log.info("结果:{}", result);
+    }
 }
